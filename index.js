@@ -1,13 +1,14 @@
 import express from "express";
 const server = express(); // This server is deaf
 import Cors from "cors";
+import { filterDestinations } from "./helpers.js";
 
-const PORT = process.env.PORT || 8000;
+server.use(Cors());
+
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Server listening on port:${PORT}`);
 });
-
-server.use(Cors());
 
 const destinationsDB = {
   123456: {
@@ -25,17 +26,16 @@ const destinationsDB = {
 };
 
 server.get("/destinations", (req, res) => {
-  res.send(destinationsDB);
+  //console.log(req.query);
+  // check for a city query parameter
+  const city = req.query.city;
+  filterDestinations({ city, destinationsDB, res });
 });
 
-// CREATE (OPTIONAL) still working on this.
-// server.post("/destinations", (req, res) => {
-//   console.log("It is finished.");
-// });
-
-// READ => DO THIS
-// GET /destinations => send back the whole db
-
-// UPDATE (OPTIONAL)
-
-// DELETE (OPTIONAL)
+// GET /destinations/city/:myCity
+//localhost:3000/destinations/city/Durham
+server.get("/destinations/city/:myCity", (req, res) => {
+  //log the city passed in the url as a named route parameter
+  const city = req.params.myCity;
+  filterDestinations({ city, destinationsDB, res });
+});
