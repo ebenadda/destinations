@@ -1,7 +1,10 @@
 const express = require("express");
 const server = express(); // This server is deaf
 
-server.listen(3000); // Told the server to listen on port 3000
+const PORT = process.env.PORT || 8000;
+server.listen(PORT, () => {
+  console.log(`Server listening on port:${PORT}`);
+});
 
 const destinationsDB = {
   123456: {
