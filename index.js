@@ -1,10 +1,13 @@
 const express = require("express");
 const server = express(); // This server is deaf
+import Cors from "cors";
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
   console.log(`Server listening on port:${PORT}`);
 });
+
+server.use(Cors());
 
 const destinationsDB = {
   123456: {
