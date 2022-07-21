@@ -27,7 +27,11 @@ const destinationsDB = {
 server.get("/destinations", (req, res) => {
   res.send(destinationsDB);
 });
-// CREATE (OPTIONAL)
+
+// CREATE (OPTIONAL) still working on this.
+// server.post("/destinations", (req, res) => {
+//   console.log("It is finished.");
+// });
 
 // READ => DO THIS
 // GET /destinations => send back the whole db
