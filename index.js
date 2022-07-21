@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 const server = express(); // This server is deaf
 import Cors from "cors";
 
